@@ -1,0 +1,42 @@
+{
+  "name": "grunt-file-append",
+  "description": "Append or prepend data to file.",
+  "version": "0.0.1",
+  "homepage": "http://dj7.dyndns.org",
+  "author": {
+    "name": "Efim Vl. Dejin",
+    "email": "efim@dejin.pp.ua"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@git.dejin.pp.ua:fima/grunt-file-append.git"
+  },
+  "bugs": {
+    "url": ""
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://dj7.dyndns.org/blob/master/LICENSE-MIT"
+    }
+  ],
+  "main": "Gruntfile.js",
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "devDependencies": {
+    "grunt-contrib-jshint": "~0.6.0",
+    "grunt-contrib-clean": "~0.4.0",
+    "grunt-contrib-nodeunit": "~0.2.0",
+    "grunt": "~0.4.1"
+  },
+  "peerDependencies": {
+    "grunt": "~0.4.1"
+  },
+  "keywords": [
+    "gruntplugin"
+  ]
+}
