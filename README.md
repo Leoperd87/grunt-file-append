@@ -60,7 +60,7 @@ A string value that is used to find original file. If undefined then data get fr
 
 ### Usage Examples
 
-#### Default Options
+#### Example 1
 In this example, show how to generate output file `tmp/testing1` which contain `"goog.provide(\"goog.renaming\");\n"` and data from `./test/fixtures/testing1` file.
 
 ```js
@@ -78,7 +78,7 @@ grunt.initConfig({
 })
 ```
 
-#### Custom Options
+#### Example 2
 In this example, show how to generate output file `tmp/testing2` which contain data from `tmp/testing2` file and `"\n/*\n//@ sourceMappingURL=testing2.js.map\n*/"`.
 
 ```js
