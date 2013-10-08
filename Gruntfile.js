@@ -37,7 +37,7 @@ module.exports = function(grunt) {
             input: './test/fixtures/testing1'
           },
           'tmp/testing2': {
-            append: "\n/*\n//@ sourceMappingURL=testing2.js.map\n*/\n"
+            append: "\n/*\n//@ sourceMappingURL=testing2.js.map\n*/"
           }
         }
       }
