@@ -16,42 +16,45 @@ module.exports = function(grunt) {
       all: [
         'Gruntfile.js',
         'tasks/*.js',
-        '<%= nodeunit.tests %>',
+        '<%= nodeunit.tests %>'
       ],
       options: {
-        jshintrc: '.jshintrc',
-      },
+        jshintrc: '.jshintrc'
+      }
     },
 
     // Before generating any new files, remove any previously-created files.
     clean: {
-      tests: ['tmp'],
+      tests: ['tmp']
     },
 
     // Configuration to be run (and then tested).
     file_append: {
       default_options: {
-        options: {
-        },
         files: {
-          'tmp/default_options': ['test/fixtures/testing', 'test/fixtures/123'],
-        },
-      },
-      custom_options: {
-        options: {
-          separator: ': ',
-          punctuation: ' !!!',
-        },
-        files: {
-          'tmp/custom_options': ['test/fixtures/testing', 'test/fixtures/123'],
-        },
-      },
+          'tmp/testing1': {
+            prepend: "goog.provide(\"goog.renaming\");\n",
+            input: './test/fixtures/testing1'
+          },
+          'tmp/testing2': {
+            append: "\n/*\n//@ sourceMappingURL=testing2.js.map\n*/\n"
+          }
+        }
+      }
     },
 
     // Unit tests.
     nodeunit: {
-      tests: ['test/*_test.js'],
+      tests: ['test/*_test.js']
     },
+
+    copy: {
+      main: {
+        files: [
+          {src: ['./test/fixtures/testing2'], dest: './tmp/', filter: 'isFile'}, // includes files in path
+        ]
+      }
+    }
 
   });
 
@@ -62,10 +65,11 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-nodeunit');
+  grunt.loadNpmTasks('grunt-contrib-copy');
 
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
-  grunt.registerTask('test', ['clean', 'file_append', 'nodeunit']);
+  grunt.registerTask('test', ['clean', 'copy', 'file_append', 'nodeunit']);
 
   // By default, lint and run all tests.
   grunt.registerTask('default', ['jshint', 'test']);
