@@ -51,7 +51,7 @@ module.exports = function(grunt) {
     copy: {
       main: {
         files: [
-          {cwd: './test/fixtures/', src: ['*2'], dest: './tmp/', filter: 'isFile'}, // includes files in path
+          {expand: true, cwd: 'test/fixtures/', src: ['*2'], dest: 'tmp/'}
         ]
       }
     }
