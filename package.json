@@ -1,7 +1,7 @@
 {
   "name": "grunt-file-append",
   "description": "Append or prepend data to file.",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "homepage": "http://dj7.dyndns.org",
   "author": {
     "name": "Efim Vl. Dejin",

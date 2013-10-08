@@ -25,60 +25,73 @@ In your project's Gruntfile, add a section named `file_append` to the data objec
 ```js
 grunt.initConfig({
   file_append: {
-    options: {
-      // Task-specific options go here.
-    },
-    your_target: {
-      // Target-specific file lists and/or options go here.
-    },
-  },
+    default_options: {
+      files: {
+        'path/to/output/file': {
+          append: "text to append"
+          prepend: "text to prepend",
+          input: '/path/to/input/file'
+        }
+      }
+    }
+  }
 })
 ```
 
 ### Options
 
-#### options.separator
+#### append
 Type: `String`
-Default value: `',  '`
+Default value: `''`
 
-A string value that is used to do something with whatever.
+A string value that is used to append to the begin of file.
 
-#### options.punctuation
+#### prepend
 Type: `String`
-Default value: `'.'`
+Default value: `''`
 
-A string value that is used to do something else with whatever else.
+A string value that is used to append to the end of file.
+
+#### input
+Type: `String`
+Default value: path to output file
+
+A string value that is used to find original file. If undefined then data get from output file and writes to output file.
 
 ### Usage Examples
 
 #### Default Options
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
+In this example, output file `tmp/testing1` contain `"goog.provide(\"goog.renaming\");\n"` and data from `./test/fixtures/testing1` file.
 
 ```js
 grunt.initConfig({
   file_append: {
-    options: {},
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
+    default_options: {
+      files: {
+        'tmp/testing1': {
+          prepend: "goog.provide(\"goog.renaming\");\n",
+          input: './test/fixtures/testing1'
+        }
+      }
+    }
+  }
 })
 ```
 
 #### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
+In this example, output file `tmp/testing2` contain data from `./test/fixtures/testing2` file and `"\n/*\n//@ sourceMappingURL=testing2.js.map\n*/"`.
 
 ```js
 grunt.initConfig({
   file_append: {
-    options: {
-      separator: ': ',
-      punctuation: ' !!!',
-    },
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
+    default_options: {
+      files: {
+        'tmp/testing2': {
+          append: "\n/*\n//@ sourceMappingURL=testing2.js.map\n*/"
+        }
+      }
+    }
+  }
 })
 ```
 
