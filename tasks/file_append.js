@@ -29,7 +29,7 @@ module.exports = function (grunt) {
         grunt.log.warn('Source file "' + filepath + '" not found.');
         return false;
       }
-      var value = data[key].prepend ? data[key].prepend : '' + grunt.file.read(filepath) + data[key].append ? data[key].append : '';
+      var value = (data[key].prepend ? data[key].prepend : '') + grunt.file.read(filepath) + (data[key].append ? data[key].append : '');
 
       grunt.file.write(key, value);
 
