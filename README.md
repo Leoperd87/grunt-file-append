@@ -44,13 +44,13 @@ grunt.initConfig({
 Type: `String`
 Default value: `''`
 
-A string value that is used to append to the begin of file.
+A string value that is used to append to the end of file.
 
 #### prepend
 Type: `String`
 Default value: `''`
 
-A string value that is used to append to the end of file.
+A string value that is used to append to the begin of file.
 
 #### input
 Type: `String`
