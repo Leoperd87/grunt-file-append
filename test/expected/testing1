@@ -1,4 +1,4 @@
-goog.provide(\"goog.renaming\");
+goog.provide("goog.renaming");
 goog.setCssNameMapping({
   "field": "a",
   "button": "b",

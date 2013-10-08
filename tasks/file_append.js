@@ -33,7 +33,6 @@ module.exports = function (grunt) {
 
       grunt.file.write(key, value);
 
-      return true;
     }
 
   });
