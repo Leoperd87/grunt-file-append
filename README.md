@@ -28,7 +28,7 @@ grunt.initConfig({
     default_options: {
       files: {
         'path/to/output/file': {
-          append: "text to append"
+          append: "text to append",
           prepend: "text to prepend",
           input: '/path/to/input/file'
         }
