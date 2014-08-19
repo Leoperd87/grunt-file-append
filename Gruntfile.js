@@ -38,6 +38,14 @@ module.exports = function(grunt) {
           },
           'tmp/testing2': {
             append: "\n/*\n//@ sourceMappingURL=testing2.js.map\n*/"
+          },
+          'tmp/testing3': {
+            prepend: function () {
+              return 'test' + ' ' + 'prepend' + ' ' + 'string' + "\n\n";
+            },
+            append: function () {
+              return "\n\n" + 'test' + ' ' + 'apppend' + ' ' + 'string';
+            }
           }
         }
       }
@@ -51,7 +59,8 @@ module.exports = function(grunt) {
     copy: {
       main: {
         files: [
-          {expand: true, cwd: 'test/fixtures/', src: ['*2'], dest: 'tmp/'}
+          {expand: true, cwd: 'test/fixtures/', src: ['*2'], dest: 'tmp/'},
+          {expand: true, cwd: 'test/fixtures/', src: ['*3'], dest: 'tmp/'}
         ]
       }
     }
