@@ -29,7 +29,22 @@ module.exports = function (grunt) {
         grunt.log.warn('Source file "' + filepath + '" not found.');
         return false;
       }
-      var value = (data[key].prepend ? data[key].prepend : '') + grunt.file.read(filepath) + (data[key].append ? data[key].append : '');
+
+      var prepend;
+      if(typeof data[key].prepend === 'function') {
+        prepend = data[key].prepend();
+      } else {
+        prepend = data[key].prepend ? data[key].prepend : '';
+      }
+
+      var append;
+      if(typeof data[key].append === 'function') {
+        append = data[key].append();
+      } else {
+        append = data[key].append ? data[key].append : '';
+      }
+
+      var value = prepend + grunt.file.read(filepath) + append;
 
       grunt.file.write(key, value);
 
