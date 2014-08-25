@@ -1,7 +1,7 @@
 {
   "name": "grunt-file-append",
   "description": "Append or prepend data to file.",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "homepage": "http://dej.in.ua/grunt-file-append/",
   "author": {
     "name": "Efim Vl. Dejin",
