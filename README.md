@@ -26,13 +26,14 @@ In your project's Gruntfile, add a section named `file_append` to the data objec
 grunt.initConfig({
   file_append: {
     default_options: {
-      files: {
-        'path/to/output/file': {
+      files: [
+        {
           append: "text to append",
           prepend: "text to prepend",
           input: '/path/to/input/file'
+          output: 'path/to/output/file'
         }
-      }
+      ]
     }
   }
 })
@@ -40,23 +41,31 @@ grunt.initConfig({
 
 ### Options
 
+Array of objects or functions which return structure:
+
 #### append
-Type: `String`
+Type: `String|Function`
 Default value: `''`
 
 A string value that is used to append to the end of file.
 
 #### prepend
-Type: `String`
+Type: `String|Function`
 Default value: `''`
 
 A string value that is used to append to the begin of file.
 
 #### input
-Type: `String`
-Default value: path to output file
+Type: `String|Function`
+!Required
 
-A string value that is used to find original file. If undefined then data get from output file and writes to output file.
+A string value that is used to find original file.
+
+#### output
+Type: `String|Function`
+Default value: `input`
+
+A string value that is used to find output file. If undefined then data get from original file and writes to original file.
 
 ### Usage Examples
 
@@ -67,12 +76,13 @@ In this example, show how to generate output file `tmp/testing1` which contain `
 grunt.initConfig({
   file_append: {
     default_options: {
-      files: {
-        'tmp/testing1': {
+      files: [
+        {
           prepend: "goog.provide(\"goog.renaming\");\n",
-          input: './test/fixtures/testing1'
+          input: './test/fixtures/testing1',
+          output: 'tmp/testing1'
         }
-      }
+      ]
     }
   }
 })
@@ -85,11 +95,14 @@ In this example, show how to generate output file `tmp/testing2` which contain d
 grunt.initConfig({
   file_append: {
     default_options: {
-      files: {
-        'tmp/testing2': {
-          append: "\n/*\n//@ sourceMappingURL=testing2.js.map\n*/"
+      files: [
+        function() {
+          return {
+            append: "\n/*\n//@ sourceMappingURL=testing2.js.map\n*/"
+            input: 'tmp/testing2'
+          };
         }
-      }
+      ]
     }
   }
 })

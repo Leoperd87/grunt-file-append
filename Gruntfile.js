@@ -31,27 +31,41 @@ module.exports = function(grunt) {
     // Configuration to be run (and then tested).
     file_append: {
       default_options: {
-        files: {
-          'tmp/testing1': {
-            prepend: "goog.provide(\"goog.renaming\");\n",
-            input: './test/fixtures/testing1'
+        files: [
+          {
+            prepend: 'goog.provide(\"goog.renaming\");\n',
+            input: './test/fixtures/testing1',
+            output: 'tmp/testing1'
           },
-          'tmp/testing2': {
-            append: "\n/*\n//@ sourceMappingURL=testing2.js.map\n*/"
+          {
+            append: '\n/*\n//@ sourceMappingURL=testing2.js.map\n*/',
+            input: 'tmp/testing2'
           },
-          'tmp/testing3': {
-            prepend: function () {
-              return 'test' + ' ' + 'prepend' + ' ' + 'string' + "\n\n";
+          {
+            prepend: function() {
+              return 'test' + ' ' + 'prepend' + ' ' + 'string' + '\n\n';
             },
-            append: function () {
-              return "\n\n" + 'test' + ' ' + 'apppend' + ' ' + 'string';
-            }
+            append: function() {
+              return '\n\n' + 'test' + ' ' + 'apppend' + ' ' + 'string';
+            },
+            input: 'tmp/testing3'
+          },
+          function() {
+            return {
+              prepend: function() {
+                return 'test' + ' ' + 'prepend' + ' ' + 'string' + '\n\n';
+              },
+              append: function() {
+                return '\n\n' + 'test' + ' ' + 'apppend' + ' ' + 'string';
+              },
+              input: 'tmp/testing4'
+            };
           }
-        }
+        ]
       }
     },
 
-    // Unit tests.
+// Unit tests.
     nodeunit: {
       tests: ['test/*_test.js']
     },
@@ -60,27 +74,28 @@ module.exports = function(grunt) {
       main: {
         files: [
           {expand: true, cwd: 'test/fixtures/', src: ['*2'], dest: 'tmp/'},
-          {expand: true, cwd: 'test/fixtures/', src: ['*3'], dest: 'tmp/'}
+          {expand: true, cwd: 'test/fixtures/', src: ['*3'], dest: 'tmp/'},
+          {expand: true, cwd: 'test/fixtures/', src: ['*4'], dest: 'tmp/'}
         ]
       }
     }
 
   });
 
-  // Actually load this plugin's task(s).
+// Actually load this plugin's task(s).
   grunt.loadTasks('tasks');
 
-  // These plugins provide necessary tasks.
+// These plugins provide necessary tasks.
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-nodeunit');
   grunt.loadNpmTasks('grunt-contrib-copy');
 
-  // Whenever the "test" task is run, first clean the "tmp" dir, then run this
-  // plugin's task(s), then test the result.
+// Whenever the "test" task is run, first clean the "tmp" dir, then run this
+// plugin's task(s), then test the result.
   grunt.registerTask('test', ['clean', 'copy', 'file_append', 'nodeunit']);
 
-  // By default, lint and run all tests.
+// By default, lint and run all tests.
   grunt.registerTask('default', ['jshint', 'test']);
 
 };

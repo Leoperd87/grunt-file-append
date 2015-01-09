@@ -50,7 +50,16 @@ exports.file_append = {
 
     var actual = grunt.file.read('tmp/testing3');
     var expected = grunt.file.read('test/expected/testing3');
-    test.equal(actual, expected, 'Test two fail');
+    test.equal(actual, expected, 'Test three fail');
+
+    test.done();
+  },
+  test4: function(test) {
+    test.expect(1);
+
+    var actual = grunt.file.read('tmp/testing4');
+    var expected = grunt.file.read('test/expected/testing4');
+    test.equal(actual, expected, 'Test four fail');
 
     test.done();
   }
